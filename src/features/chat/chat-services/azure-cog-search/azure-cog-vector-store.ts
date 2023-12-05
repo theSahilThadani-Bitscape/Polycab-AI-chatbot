@@ -178,11 +178,15 @@ export const embedDocuments = async (
 };
 
 const baseUrl = (): string => {
-  return `https://${process.env.AZURE_SEARCH_NAME}.search.windows.net/indexes`;
+  console.log(`${process.env.AZURE_SEARCH_NAME}.search.windows.net/indexes`);
+  return `${process.env.AZURE_SEARCH_NAME}.search.windows.net/indexes`;
 };
 
 const baseIndexUrl = (): string => {
-  return `https://${process.env.AZURE_SEARCH_NAME}.search.windows.net/indexes/${process.env.AZURE_SEARCH_INDEX_NAME}`;
+  console.log(
+    `${process.env.AZURE_SEARCH_NAME}.search.windows.net/indexes/${process.env.AZURE_SEARCH_INDEX_NAME}`
+  );
+  return `${process.env.AZURE_SEARCH_NAME}.search.windows.net/indexes/${process.env.AZURE_SEARCH_INDEX_NAME}`;
 };
 
 const fetcher = async (url: string, init?: RequestInit) => {
