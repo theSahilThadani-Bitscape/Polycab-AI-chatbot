@@ -60,7 +60,7 @@ export const MainMenu = () => {
         ) : (
           <></>
         )}
-        <Button
+        {/* <Button
           asChild
           className="rounded-full w-[40px] h-[40px] p-2 text-primary"
           variant={"outline"}
@@ -69,7 +69,7 @@ export const MainMenu = () => {
             <Triangle />
             <UpdateIndicator />
           </Link>
-        </Button>
+        </Button> */}
       </div>
       <div className="flex flex-col gap-2 items-center">
         <ThemeToggle />

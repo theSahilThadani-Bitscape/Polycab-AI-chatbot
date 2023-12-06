@@ -1,1 +1,1 @@
-export const AI_NAME = "Plicab AI";
+export const AI_NAME = "Polycab AI";
