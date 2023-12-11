@@ -40,7 +40,7 @@ export interface PromptGPTBody {
   chatType: ChatType;
   conversationStyle: ConversationStyle;
   chatOverFileName: string;
-  // email:string
+  email: string;
 }
 
 export interface PromptGPTProps extends PromptGPTBody {
