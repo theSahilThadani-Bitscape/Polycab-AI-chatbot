@@ -14,8 +14,9 @@ export const ChatMessageContainer = () => {
   const { data: session } = useSession();
   const emailToFilter = session?.user.email;
   const { messages, isLoading } = useChatContext();
+  console.log(messages);
   const displayedMessages = messages.filter(
-    (msg) => msg.email === emailToFilter || !msg.email
+    (msg) => msg.name === emailToFilter || !msg.name
   );
   useChatScrollAnchor(messages, scrollRef);
 

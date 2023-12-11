@@ -14,7 +14,7 @@ export interface ChatMessageModel {
   role: ChatRole;
   context: string;
   type: "CHAT_MESSAGE";
-  email:string;
+  email: string;
 }
 
 export type ConversationStyle = "creative" | "balanced" | "precise";
@@ -54,7 +54,7 @@ export interface ChatDocumentModel {
   userId: string;
   isDeleted: boolean;
   createdAt: Date;
-  email:string;
+  email: string;
   type: "CHAT_DOCUMENT";
 }
 
