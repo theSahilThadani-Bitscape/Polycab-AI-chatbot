@@ -1,4 +1,3 @@
-
 import ChatLoading from "@/components/chat/chat-loading";
 import ChatRow from "@/components/chat/chat-row";
 import { useChatScrollAnchor } from "@/components/hooks/use-chat-scroll-anchor";
@@ -15,7 +14,9 @@ export const ChatMessageContainer = () => {
   const { data: session } = useSession();
   const emailToFilter = session?.user.email;
   const { messages, isLoading } = useChatContext();
-  const displayedMessages = messages.filter((msg) => msg.email === emailToFilter || !msg.email);
+  const displayedMessages = messages.filter(
+    (msg) => msg.email === emailToFilter || !msg.email
+  );
   useChatScrollAnchor(messages, scrollRef);
 
   return (
