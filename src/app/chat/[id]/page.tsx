@@ -12,15 +12,14 @@ export default async function Home({ params }: { params: { id: string } }) {
   const [items, thread] = await Promise.all([
     FindAllChats(params.id),
     FindChatThreadByID(params.id),
-    
   ]);
 
   if (thread.length === 0) {
     notFound();
   }
-  
+
   return (
-    <ChatProvider id={params.id} chats={items}  chatThread={thread[0]}>
+    <ChatProvider id={params.id} chats={items} chatThread={thread[0]}>
       <ChatUI />
     </ChatProvider>
   );
