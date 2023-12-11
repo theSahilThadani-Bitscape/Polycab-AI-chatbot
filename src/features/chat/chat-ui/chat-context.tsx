@@ -22,9 +22,6 @@ import {
   useTextToSpeech,
 } from "./chat-speech/use-text-to-speech";
 
-interface ExtendedMessage extends Message {
-  email?: string;
-}
 interface ChatContextProps extends UseChatHelpers {
   id: string;
   setChatBody: (body: PromptGPTBody) => void;
@@ -33,7 +30,6 @@ interface ChatContextProps extends UseChatHelpers {
   onChatTypeChange: (value: ChatType) => void;
   onConversationStyleChange: (value: ConversationStyle) => void;
   speech: TextToSpeechProps & SpeechToTextProps;
-  email: string;
 }
 
 const ChatContext = createContext<ChatContextProps | null>(null);
@@ -47,6 +43,7 @@ interface Prop {
 }
 
 export const ChatProvider: FC<Prop> = (props) => {
+  
   const { showError } = useGlobalMessageContext();
 
   const speechSynthesizer = useTextToSpeech();
@@ -81,7 +78,7 @@ export const ChatProvider: FC<Prop> = (props) => {
       }
     },
   });
-
+  
   const setChatBody = (body: PromptGPTBody) => {
     setBody(body);
   };
@@ -106,7 +103,6 @@ export const ChatProvider: FC<Prop> = (props) => {
         ...response,
         setChatBody,
         chatBody,
-        email: "email",
         onChatTypeChange,
         onConversationStyleChange,
         fileState,
@@ -124,7 +120,7 @@ export const ChatProvider: FC<Prop> = (props) => {
 
 export const useChatContext = () => {
   const context = useContext(ChatContext);
-  console.log(ChatContext);
+  console.log(ChatContext)
   if (!context) {
     throw new Error("ChatContext is null");
   }
