@@ -1,18 +1,21 @@
+
 import ChatLoading from "@/components/chat/chat-loading";
 import ChatRow from "@/components/chat/chat-row";
 import { useChatScrollAnchor } from "@/components/hooks/use-chat-scroll-anchor";
 import { AI_NAME } from "@/features/theme/customise";
 import { useSession } from "next-auth/react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useChatContext } from "./chat-context";
 import { ChatHeader } from "./chat-header";
+import { userSession } from "@/features/auth/helpers";
 
 export const ChatMessageContainer = () => {
-  const { data: session } = useSession();
   const scrollRef = useRef<HTMLDivElement>(null);
-
+  // Specify the email to filter
+  const { data: session } = useSession();
+  const emailToFilter = session?.user.email;
   const { messages, isLoading } = useChatContext();
-
+  const displayedMessages = messages.filter((msg) => msg.email === emailToFilter || !msg.email);
   useChatScrollAnchor(messages, scrollRef);
 
   return (
@@ -21,7 +24,7 @@ export const ChatMessageContainer = () => {
         <ChatHeader />
       </div>
       <div className=" pb-[80px] flex flex-col justify-end flex-1">
-        {messages.map((message, index) => (
+        {displayedMessages.map((message, index) => (
           <ChatRow
             name={message.role === "user" ? session?.user?.name! : AI_NAME}
             profilePicture={

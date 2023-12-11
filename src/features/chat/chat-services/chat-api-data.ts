@@ -1,4 +1,5 @@
 import { userHashedId } from "@/features/auth/helpers";
+import { Emails } from "@/features/auth/helpers";
 import { OpenAIInstance } from "@/features/common/openai";
 import { AI_NAME } from "@/features/theme/customise";
 import { OpenAIStream, StreamingTextResponse } from "ai";
@@ -6,6 +7,8 @@ import { similaritySearchVectorWithScore } from "./azure-cog-search/azure-cog-ve
 import { initAndGuardChatSession } from "./chat-thread-service";
 import { CosmosDBChatMessageHistory } from "./cosmosdb/cosmosdb";
 import { PromptGPTProps } from "./models";
+import { Session } from "inspector";
+
 
 const SYSTEM_PROMPT = `You are ${AI_NAME} who is a helpful AI Assistant.`;
 
@@ -36,14 +39,15 @@ export const ChatAPIData = async (props: PromptGPTProps) => {
   const openAI = OpenAIInstance();
 
   const userId = await userHashedId();
-
+  const email= await Emails()
   const chatHistory = new CosmosDBChatMessageHistory({
     sessionId: chatThread.id,
     userId: userId,
+    email:email,
   });
 
   const history = await chatHistory.getMessages();
-  const topHistory = history.slice(history.length - 30, history.length);
+  const topHistory = history.slice(history.length - 60, history.length);
 
   const relevantDocuments = await findRelevantDocuments(
     lastHumanMessage.content,

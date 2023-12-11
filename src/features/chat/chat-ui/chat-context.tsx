@@ -38,10 +38,12 @@ interface Prop {
   children: React.ReactNode;
   id: string;
   chats: Array<ChatMessageModel>;
+  // email:string
   chatThread: ChatThreadModel;
 }
 
 export const ChatProvider: FC<Prop> = (props) => {
+  
   const { showError } = useGlobalMessageContext();
 
   const speechSynthesizer = useTextToSpeech();
@@ -52,12 +54,12 @@ export const ChatProvider: FC<Prop> = (props) => {
   });
 
   const fileState = useFileState();
-
   const [chatBody, setBody] = useState<PromptGPTBody>({
     id: props.chatThread.id,
     chatType: props.chatThread.chatType,
     conversationStyle: props.chatThread.conversationStyle,
     chatOverFileName: props.chatThread.chatOverFileName,
+    // email:props.email,
   });
 
   const { textToSpeech } = speechSynthesizer;
@@ -76,7 +78,7 @@ export const ChatProvider: FC<Prop> = (props) => {
       }
     },
   });
-
+  
   const setChatBody = (body: PromptGPTBody) => {
     setBody(body);
   };
@@ -118,6 +120,7 @@ export const ChatProvider: FC<Prop> = (props) => {
 
 export const useChatContext = () => {
   const context = useContext(ChatContext);
+  console.log(ChatContext)
   if (!context) {
     throw new Error("ChatContext is null");
   }
