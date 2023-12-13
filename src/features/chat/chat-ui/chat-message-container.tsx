@@ -14,7 +14,6 @@ export const ChatMessageContainer = () => {
   const { data: session } = useSession();
   const emailToFilter = session?.user.email;
   const { messages, isLoading } = useChatContext();
-  console.log(messages);
   const displayedMessages = messages.filter(
     (msg) => msg.name === emailToFilter || !msg.name
   );
@@ -22,9 +21,7 @@ export const ChatMessageContainer = () => {
 
   return (
     <div className="h-full rounded-md overflow-y-auto " ref={scrollRef}>
-      <div className="flex justify-center p-4">
-        <ChatHeader />
-      </div>
+      <div className="flex justify-center p-4">{/* <ChatHeader /> */}</div>
       <div className=" pb-[80px] flex flex-col justify-end flex-1">
         {displayedMessages.map((message, index) => (
           <ChatRow

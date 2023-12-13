@@ -29,7 +29,7 @@ export const MainMenu = () => {
         >
           {isMenuOpen ? <PanelLeftClose /> : <PanelRightClose />}
         </Button>
-        <Button
+        {/* <Button
           asChild
           className="rounded-full w-[40px] h-[40px] p-1 text-primary"
           variant={"outline"}
@@ -37,8 +37,8 @@ export const MainMenu = () => {
           <Link href="/" title="Home">
             <img src="/ai-icon.png" />
           </Link>
-        </Button>
-        <Button
+        </Button> */}
+        {/* <Button
           asChild
           className="rounded-full w-[40px] h-[40px] p-2 text-primary"
           variant={"outline"}
@@ -46,8 +46,8 @@ export const MainMenu = () => {
           <Link href="/" title="Chat">
             <MessageCircle />
           </Link>
-        </Button>
-        {session?.user?.isAdmin ? (
+        </Button> */}
+        {/* {session?.user?.isAdmin ? (
           <Button
             asChild
             className="rounded-full w-[40px] h-[40px] p-2 text-primary"
@@ -59,7 +59,7 @@ export const MainMenu = () => {
           </Button>
         ) : (
           <></>
-        )}
+        )} */}
         {/* <Button
           asChild
           className="rounded-full w-[40px] h-[40px] p-2 text-primary"
